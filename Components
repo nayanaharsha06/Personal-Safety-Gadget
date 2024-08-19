@@ -1,0 +1,21 @@
+ Components Used:
+- Arduino UNO (x2): The Arduino UNO serves as the project's microcontroller, handling data processing, decision-making, and control of other components. 
+It interfaces with sensors and the LED module to execute programmed logic and manage operations.
+
+- SIM900A GSM Module: The SIM900A is a GSM/GPRS module supporting 900/1800MHz frequencies, enabling voice calls, SMS, and GPRS data transmission. 
+It's compact and integrates easily via UART, ideal for remote monitoring and IoT applications. 
+The SIM900A GSM module enables the "Personal Safety Gadget" to make voice calls to emergency services and send discreet SMS notifications to pre-designated contacts,
+ensuring rapid and reliable communication during critical situations. SIM stands for Subscriber Identity Module.
+
+- Relay Module (x1): The relay module allows the Arduino to control high-power devices. It acts as an electrical switch, enabling the microcontroller to manage devices requiring higher voltage and current.
+
+- HC-05 Bluetooth Module (x1): The HC-05 module enables wireless communication via Bluetooth 2.0 + EDR. It supports both master and slave modes, facilitating data transmission between microcontrollers and other
+devices using serial UART communication.
+
+- Jumper Wires: Jumper wires are used to establish electrical connections between the components on a breadboard. They are essential for creating the circuit and ensuring proper connectivity.
+
+- Power Adapter: The power adapter supplies stable and regulated power to the Arduino and other components. It ensures the entire system operates reliably by providing the necessary voltage and current.
+ 
+ 
+
+
