@@ -1,0 +1,80 @@
+#define relay1 2    // Connect relay1 to pin 2
+#define relay2 3    // Connect relay2 to pin 3
+#define relay3 4    // Connect relay3 to pin 4
+#define relay4 5    // Connect relay4 to pin 5
+String voice;       // Declare a string variable to store the voice command
+
+void setup()
+{
+  Serial.begin(9600);            // Initialize serial communication at 9600 bps
+  pinMode(relay1, OUTPUT);       // Set relay1 pin as an output
+  pinMode(relay2, OUTPUT);       // Set relay2 pin as an output
+  pinMode(relay3, OUTPUT);       // Set relay3 pin as an output
+  pinMode(relay4, OUTPUT);       // Set relay4 pin as an output
+  digitalWrite(relay1, HIGH);    // Initially switch relay1 off
+  digitalWrite(relay2, HIGH);    // Initially switch relay2 off
+  digitalWrite(relay3, HIGH);    // Initially switch relay3 off
+  digitalWrite(relay4, HIGH);    // Initially switch relay4 off
+}
+
+void loop() 
+{
+  while (Serial.available()){    // Check if there is an available byte to read from the serial buffer
+     delay(10);                  // Small delay for stability
+    char c = Serial.read();      // Read one character from the serial buffer
+    if (c == '#') {break;}       // If the character is '#', break the loop (end of command)
+    voice += c;                  // Append the character to the 'voice' string
+  }
+  
+  if (voice.length() > 0)        // If a command has been received
+  {
+    // Check the voice command and control the corresponding relay
+    if(voice == "*call the ambulance"){          
+      digitalWrite(relay1, LOW);   // Turn relay1 on
+    }
+    else if(voice == "*turn on LED"){      
+      digitalWrite(relay2, LOW);   // Turn relay2 on
+    }
+    else if(voice == "*turn on alarm") {     
+      digitalWrite(relay3, LOW);   // Turn relay3 on
+    }
+    else if(voice == "*turn on fan") {     
+      digitalWrite(relay4, LOW);   // Turn relay4 on
+    }
+    else if(voice == "*turn off light") {      
+      digitalWrite(relay1, HIGH);  // Turn relay1 off
+    }
+    else if(voice == "*turn off LED") {      
+      digitalWrite(relay2, HIGH);  // Turn relay2 off
+    }
+    else if(voice == "*turn off buzzer") {     
+      digitalWrite(relay3, HIGH);  // Turn relay3 off
+    }
+    else if(voice == "*turn off fan") {      
+      digitalWrite(relay4, HIGH);  // Turn relay4 off
+    }
+    else if(voice == "*turn all devices on") { 
+      switchallon();               // Turn all relays on
+    }
+    else if(voice == "*turn all devices off") {
+      switchalloff();              // Turn all relays off
+    }
+    voice = ""; // Reset the variable after processing the command
+  }
+}
+
+void switchalloff()               // Function to turn off all relays
+{
+  digitalWrite(relay1, HIGH);     // Turn relay1 off
+  digitalWrite(relay2, HIGH);     // Turn relay2 off
+  digitalWrite(relay3, HIGH);     // Turn relay3 off
+  digitalWrite(relay4, HIGH);     // Turn relay4 off
+}
+
+void switchallon()                // Function to turn on all relays
+{
+  digitalWrite(relay1, LOW);      // Turn relay1 on
+  digitalWrite(relay2, LOW);      // Turn relay2 on
+  digitalWrite(relay3, LOW);      // Turn relay3 on
+  digitalWrite(relay4, LOW);      // Turn relay4 on
+}
